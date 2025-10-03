@@ -1,0 +1,7 @@
+import { Spin } from "antd";
+
+export function CircleLoading() {
+  return <div className="flex w-full h-full items-center justify-center">
+    <Spin size="large"/>
+  </div>;
+}

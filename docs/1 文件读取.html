@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" onchange="previewFile()" /><br />
+    <img src="" height="200" alt="图片预览" />
+    <script>
+      function previewFile() {
+        const preview = document.querySelector('img');
+        const file = document.querySelector('input[type=file]').files[0];
+        const reader = new FileReader();
+        const fileBlob = new Blob([file]);
+
+        reader.addEventListener(
+          'load',
+          () => {
+            // 将图像文件转换为 Base64 字符串
+            preview.src = reader.result;
+            console.log(reader.result);
+            const thumbnailUrl = URL.createObjectURL(fileBlob);
+            console.log('🚀 ~ previewFile ~ thumbnailUrl:', thumbnailUrl);
+            let a = document.createElement('a');
+            a.href = thumbnailUrl;
+            a.download = 'test.jpg';
+            document.body.appendChild(a);
+            a.click();
+          },
+          false
+        );
+
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      }
+    </script>
+  </body>
+</html>
