@@ -1,3 +1,7 @@
+// JavaScript library for immutable color conversion and manipulation with support for CSS color strings.
+// const color = Color('rgb(255, 255, 255)')                       // { model: 'rgb', color: [ 255, 255, 255 ], alpha: 1 }
+// const color = Color('hsl(194, 53%, 79%)')                       // { model: 'hsl', color: [ 195, 53, 79 ], alpha: 1 }
+// const color = Color('hsl(194, 53%, 79%, 0.5)')                  // { model: 'hsl', color: [ 195, 53, 79 ], alpha: 0.5 }
 import color from 'color';
 import {themeTokens} from '../theme/type';
 

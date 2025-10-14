@@ -1,4 +1,5 @@
 import {memo} from 'react';
+// 图表库
 import ApexChart from 'react-apexcharts';
 import type {Props as ApexChartProps} from 'react-apexcharts';
 import {chartWrapper} from './styles.css';

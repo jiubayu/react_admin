@@ -1,7 +1,9 @@
 import useUserStore from "@/store/userStore";
+// faker-js mock数据
 import { faker } from "@faker-js/faker";
 
 import { BasicStatus, PermissionType } from "#/enum";
+
 /**
  * Organization data mock
  */
@@ -71,6 +73,8 @@ export const ORG_LIST = [
 /**
  * User permission mock
  */
+
+// dashboard 权限
 const DASHBOARD_PERMISSION = {
 	id: "9100714781927703",
 	parentId: "",
@@ -101,6 +105,7 @@ const DASHBOARD_PERMISSION = {
 		},
 	],
 };
+// management 权限 即管理的权限
 const MANAGEMENT_PERMISSION = {
 	id: "0901673425580518",
 	parentId: "",
@@ -111,6 +116,7 @@ const MANAGEMENT_PERMISSION = {
 	route: "management",
 	order: 2,
 	children: [
+		// user 权限 即用户设置的权限
 		{
 			id: "2781684678535711",
 			parentId: "0901673425580518",
@@ -139,6 +145,7 @@ const MANAGEMENT_PERMISSION = {
 				},
 			],
 		},
+		// system 权限 即系统设置的权限
 		{
 			id: "0249937641030250",
 			parentId: "0901673425580518",
@@ -197,6 +204,7 @@ const MANAGEMENT_PERMISSION = {
 		},
 	],
 };
+// components 权限 即组件的权限
 const COMPONENTS_PERMISSION = {
 	id: "2271615060673773",
 	parentId: "",
@@ -290,6 +298,7 @@ const COMPONENTS_PERMISSION = {
 		},
 	],
 };
+// 函数权限
 const FUNCTIONS_PERMISSION = {
 	id: "8132044808088488",
 	parentId: "",
@@ -320,6 +329,7 @@ const FUNCTIONS_PERMISSION = {
 		},
 	],
 };
+// 菜单层级权限
 const MENU_LEVEL_PERMISSION = {
 	id: "0194818428516575",
 	parentId: "",
@@ -346,6 +356,7 @@ const MENU_LEVEL_PERMISSION = {
 			name: "Menu Level 1b",
 			type: PermissionType.CATALOGUE,
 			route: "menu-level-1b",
+			// 菜单二级层级权限
 			children: [
 				{
 					id: "3653745576583237",
@@ -388,6 +399,7 @@ const MENU_LEVEL_PERMISSION = {
 		},
 	],
 };
+// 错误页面权限
 const ERRORS_PERMISSION = {
 	id: "9406067785553476",
 	parentId: "",
@@ -427,6 +439,7 @@ const ERRORS_PERMISSION = {
 		},
 	],
 };
+// 其他权限，如日历和看板权限
 const OTHERS_PERMISSION = [
 	{
 		id: "3981225257359246",
@@ -524,6 +537,13 @@ export const PERMISSION_LIST = [
 	...OTHERS_PERMISSION,
 ];
 
+const Test_PERMISSION_LIST = [
+	DASHBOARD_PERMISSION,
+	MANAGEMENT_PERMISSION,
+	COMPONENTS_PERMISSION,
+	FUNCTIONS_PERMISSION
+];
+
 /**
  * User role mock
  */
@@ -543,9 +563,10 @@ const TEST_ROLE = {
 	status: BasicStatus.ENABLE,
 	order: 2,
 	desc: "test",
-	permission: [DASHBOARD_PERMISSION, COMPONENTS_PERMISSION, FUNCTIONS_PERMISSION],
+	permission: [...Test_PERMISSION_LIST],
 };
 export const ROLE_LIST = [ADMIN_ROLE, TEST_ROLE];
+
 
 /**
  * User data mock

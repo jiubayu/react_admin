@@ -15,7 +15,9 @@ const lists = [
   ),
 ];
 
-const getData = fetch(`/api/toutiao?key=36de5db81215`).then(response => response.json());
+const getData = fetch(`/api/toutiao?key=36de5db81215`).then((response) =>
+  response.json()
+);
 
 function React19() {
   const [name, setName] = useState('');
@@ -24,17 +26,14 @@ function React19() {
   const inputRef = useRef(null);
 
   // 新的hook useActionState
-  const [err, submitAction, isPendings] = useActionState(
-    async () => {
-      const error = await fetch(`/api/toutiao?key=36de5db81215`);
-      if (error) {
-        return error;
-      }
-      confirm('更新成功');
-      return null;
-    },
-    null
-  );
+  const [err, submitAction, isPendings] = useActionState(async () => {
+    const error = await fetch(`/api/toutiao?key=36de5db81215`);
+    if (error) {
+      return error;
+    }
+    confirm('更新成功');
+    return null;
+  }, null);
 
   // Actions(动作)
   // 简化了异步操作的处理，自动管理代处理状态，错误，乐观更新和表单提交。
@@ -83,7 +82,7 @@ function React19() {
       <meta name='author' content='jiuyu' />
       <meta name='description' content='react 全家桶学习' />
       useDeferredValue
-      <Search/>
+      <Search />
     </div>
   );
 }
@@ -132,27 +131,25 @@ const Search = function () {
       </Suspense>
     </div>
   );
-}
+};
 
-const SearchResults = ({ query }: any) => {
-  console.log(query, 'query---')
+const SearchResults = ({query}: any) => {
+  console.log(query, 'query---');
   if (query === '') {
     return null;
   }
   const albums = use(getData);
   // console.log('🚀 ~ SearchResults ~ albums:', albums.items);
 
-  if(albums.items.length === 0) {
-    return <div>No results</div>
+  if (albums.items.length === 0) {
+    return <div>No results</div>;
   }
   return (
     <ul>
-      {albums.items.map((item:any) => (
-        <li key={item.id}>
-          {item.title}
-        </li>
+      {albums.items.map((item: any) => (
+        <li key={item.id}>{item.title}</li>
       ))}
     </ul>
-  );  
+  );
 };
 export default React19;
