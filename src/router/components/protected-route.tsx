@@ -13,7 +13,7 @@ type Props = {
 export default function ProtectedRoute({children}: Props) {
   const router = useRouter();
   const {accessToken} = useUserToken();
-
+  // 判断是否登录，如果没有登录，就直接跳转到登录页
   const check = useCallback(() => {
     if (!accessToken) {
       router.replace('/login');
