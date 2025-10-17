@@ -1,7 +1,7 @@
-import { useMemo, useRef, useState, type CSSProperties } from 'react';
+import {useMemo, useRef, useState, type CSSProperties} from 'react';
 import {Empty, Input, Modal, Tag, type InputRef} from 'antd';
-import { useBoolean } from 'react-use';
-import { useTranslation } from 'react-i18next';
+import {useBoolean} from 'react-use';
+import {useTranslation} from 'react-i18next';
 
 // 专注于在自动建议或搜索建议组件中高亮显示文本。它能够高效地在输入字符串中突出关键词，从而提升用户体验
 // var matches = match('Pretty cool text', 'co');
@@ -15,8 +15,8 @@ import {useRouter} from '@/router/hooks';
 import {useFlattenedRoutes} from '@/router/hooks/use-flattened-routes';
 import Scrollbar from '@/components/scrollbar';
 import styled from 'styled-components';
-import { themeVars } from '@/theme/theme.css';
-import { rgbAlpha } from '@/utils/theme';
+import {themeVars} from '@/theme/theme.css';
+import {rgbAlpha} from '@/utils/theme';
 
 function SearchBar() {
   const {t} = useTranslation();
@@ -47,15 +47,26 @@ function SearchBar() {
 
   const handleOpen = () => {
     toggle(true);
-    replace('/search');
+    setSearchQuery('');
+    setSelectedItemIndex(0);
   };
 
   const handleCancel = () => {
     toggle(false);
   };
 
-  const handleAfterOpenChange = () => {};
+  const handleAfterOpenChange = (open: boolean) => {
+    if (open) {
+      // auto focus
+      inputRef.current?.focus();
+    }
+  };
 
+  const handleSelect = (key: string) => {};
+
+  const handleHover = (index: number) => {
+    setSelectedItemIndex(index);
+  };
   return (
     <>
       <div className='flex items-center justify-center'>
@@ -125,28 +136,64 @@ function SearchBar() {
           </div>
         }
       >
-        {
-          searchResult.length === 0 ? (
-            <Empty />
-          ) : (
-              <Scrollbar>
-                <div ref={listRef} className='py-2'>
-                  {searchResult.map(({ key, label }, index) => {
-                    const matches = match(t(label), searchQuery);
-                    const partsTitle = parse(t(label), matches);
-                    const partsKey = parse(key, match(key, searchQuery));
-                    
-                    return (
-                      <StyledListItemButton
-                        key={key}
-                        style={index === selectedItemIndex ? activeStyle : {}}
-                      ></StyledListItemButton>
-                    );
-                  })}
-                </div>
-              </Scrollbar>
-          )
-        }
+        {searchResult.length === 0 ? (
+          <Empty />
+        ) : (
+          <Scrollbar>
+            <div ref={listRef} className='py-2'>
+              {searchResult.map(({key, label}, index) => {
+                const matches = match(t(label), searchQuery);
+                const partsTitle = parse(t(label), matches);
+                const partsKey = parse(key, match(key, searchQuery));
+
+                return (
+                  <StyledListItemButton
+                    key={key}
+                    style={index === selectedItemIndex ? activeStyle : {}}
+                    onClick={() => handleSelect(key)}
+                    onMouseMove={() => handleHover(index)}
+                  >
+                    <div className='flex justify-between'>
+                      <div>
+                        <div className='font-medium'>
+                          {
+                            // { text: 'co', highlight: true }
+                            partsTitle.map((item: any) => (
+                              <span
+                                key={item.text}
+                                style={{
+                                  color: item.highlight
+                                    ? themeVars.colors.palette.primary.default
+                                    : themeVars.colors.text.primary,
+                                }}
+                              >
+                                {item.text}
+                              </span>
+                            ))
+                          }
+                        </div>
+                        <div className='text-xs'>
+                          {partsKey.map((item: any) => (
+                            <span
+                              key={item.text}
+                              style={{
+                                color: item.highlight
+                                  ? themeVars.colors.palette.primary.default
+                                  : themeVars.colors.text.secondary,
+                              }}
+                            >
+                              {item.text}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </StyledListItemButton>
+                );
+              })}
+            </div>
+          </Scrollbar>
+        )}
       </Modal>
     </>
   );
@@ -159,7 +206,7 @@ const StyledListItemButton = styled.div`
   flex-direction: column;
   cursor: pointer;
   width: 100%;
-  padding:8px 16px;
+  padding: 8px 16px;
   border-radius: 8px;
   color: ${themeVars.colors.text.secondary};
-`
+`;
