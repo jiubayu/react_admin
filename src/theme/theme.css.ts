@@ -30,6 +30,11 @@ createGlobalTheme(":root.dark", themeVars, {
 	...baseThemeTokens,
 });
 
+/**
+ * 
+ * @param obj 
+ * @returns 
+ */
 function addColorChannels<T extends Record<string, any>>(obj: T): AddChannelToLeaf<T> {
 	const result: Record<string, any> = {};
 

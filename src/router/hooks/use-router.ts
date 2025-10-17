@@ -10,6 +10,8 @@ export function useRouter() {
       forward: () => navigate(1),
       reload: () => window.location.reload(),
       push: (path: string) => navigate(path),
+      // Whether to replace the current entry in the History stack
+      // true 则将当前的路由替换成新的路由，不会存储在栈中
       replace: (path: string) => navigate(path, {replace: true}),
     }),
     [navigate]

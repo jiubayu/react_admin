@@ -6,6 +6,7 @@ import {createHashRouter, Navigate, type RouteObject} from 'react-router';
 import {ERROR_ROUTE} from './routes/error-routes';
 import {RouterProvider} from 'react-router-dom';
 import ProtectedRoute from './components/protected-route';
+import { usePermissionRoutes } from './hooks/use-permission-routes';
 
 const {VITE_APP_HOMEPAGE: HOMEPAGE} = import.meta.env;
 

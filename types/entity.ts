@@ -25,6 +25,7 @@ export interface Organization {
 	children?: Organization[];
 }
 
+// 权限类型
 export interface Permission {
 	id: string;
 	parentId: string;
