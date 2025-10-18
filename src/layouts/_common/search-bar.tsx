@@ -1,6 +1,6 @@
-import {useMemo, useRef, useState, type CSSProperties} from 'react';
+import {useEffect, useMemo, useRef, useState, type CSSProperties} from 'react';
 import {Empty, Input, Modal, Tag, type InputRef} from 'antd';
-import {useBoolean} from 'react-use';
+import {useBoolean, useEvent, useKeyPressEvent} from 'react-use';
 import {useTranslation} from 'react-i18next';
 
 // 专注于在自动建议或搜索建议组件中高亮显示文本。它能够高效地在输入字符串中突出关键词，从而提升用户体验
@@ -45,6 +45,71 @@ function SearchBar() {
     ),
   };
 
+  useEffect(() => {
+    // 默认选中第一个
+    setSelectedItemIndex(0);
+  }, [searchResult.length]);
+
+  /**
+   * 进行快捷键的处理
+   */
+  useEvent('keydown', handleMetaK);
+
+  function handleMetaK(event: KeyboardEvent) {
+    // metaKey: ⌘ or ⌃
+    if (event.metaKey && event.key === 'k') {
+      handleOpen();
+    }
+  }
+  // 向上选中
+  useKeyPressEvent('ArrowUp', (event) => {
+    if (!search) return;
+    event.preventDefault();
+    // 循环滚动
+    const nextIndex =
+      selectedItemIndex === 0 ? searchResult.length - 1 : selectedItemIndex - 1;
+    setSelectedItemIndex(nextIndex);
+    // 滚动到选中的元素
+    scrollSelectedItemIntoView(nextIndex);
+  });
+
+  useKeyPressEvent('ArrowDown', (event) => {
+    if (!search) return;
+    event.preventDefault();
+    // 循环滚动
+    const nextIndex =
+      selectedItemIndex === searchResult.length - 1 ? 0 : selectedItemIndex + 1;
+    setSelectedItemIndex(nextIndex);
+    // 滚动到选中的元素
+    scrollSelectedItemIntoView(nextIndex);
+  });
+  // 点击回车，进行跳转
+  useKeyPressEvent('Enter', (event) => {
+    if (!search || searchResult.length === 0) return;
+    event.preventDefault();
+
+    const selectedKey = searchResult[selectedItemIndex].key;
+    if (selectedKey) {
+      handleSelect(selectedKey);
+      toggle(false); // 关闭弹窗
+    }
+  });
+
+  useKeyPressEvent('Escape', () => {
+    handleCancel();
+  });
+
+  const scrollSelectedItemIntoView = (index: number) => {
+    if (listRef.current) {
+      const selectedItem = listRef.current.children[index];
+      // 滚动元素的父容器, 使被调用 scrollIntoView() 的元素对用户可见。
+      selectedItem.scrollIntoView({
+        block: 'center', // 定义垂直方向的对齐
+        behavior: 'smooth', // smooth 平滑/instant 立即
+      });
+    }
+  };
+
   const handleOpen = () => {
     toggle(true);
     setSearchQuery('');
@@ -62,9 +127,13 @@ function SearchBar() {
     }
   };
 
-  const handleSelect = (key: string) => {};
+  const handleSelect = (key: string) => {
+    replace(key); // 跳转到指定路由
+    handleCancel(); // 关闭搜索框
+  };
 
   const handleHover = (index: number) => {
+    if (index === selectedItemIndex) return;
     setSelectedItemIndex(index);
   };
   return (

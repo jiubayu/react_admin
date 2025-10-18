@@ -27,7 +27,7 @@ importers:
         specifier: ^1.17.2
         version: 1.17.2
       antd:
-        specifier: ^5.25.2
+        specifier: ^5.9.3
         version: 5.25.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       apexcharts:
         specifier: ^4.7.0

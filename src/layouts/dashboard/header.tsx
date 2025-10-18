@@ -5,12 +5,18 @@ import {useSettings} from '@/store/settingStore';
 import {themeVars} from '@/theme/theme.css';
 import {cn} from '@/utils';
 import {rgbAlpha} from '@/utils/theme';
-import { HEADER_HEIGHT } from './config';
+import { HEADER_HEIGHT, NAV_COLLAPSED_WIDTH, NAV_WIDTH } from './config';
 
 import {IconButton, SvgIcon} from '@/components/icon';
 import Logo from '@/components/logo';
 
 import BreadCrumb from '../_common/bread-crumb';
+import SearchBar from '../_common/search-bar';
+import LocalePicker from '@/components/locale-picker';
+import NoticeButton from '../_common/notice';
+import SettingButton from '../_common/setting-button';
+import AccountDropdown from '../_common/account-dropdown';
+import { Drawer, theme } from 'antd';
 
 
 
@@ -73,6 +79,14 @@ function Header() {
           </div>
         </div>
       </header>
+      <Drawer
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        closeIcon={false}
+        width={themeLayout === ThemeLayout.Mini ? NAV_COLLAPSED_WIDTH : NAV_WIDTH}
+      >
+        <NavVertical closeSidebarDrawer={() => setDrawerOpen(false)} />
+      </Drawer>
     </>
   );
 }

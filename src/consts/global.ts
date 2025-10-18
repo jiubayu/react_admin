@@ -1,0 +1,1 @@
+export const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
