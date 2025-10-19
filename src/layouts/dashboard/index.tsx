@@ -6,6 +6,8 @@ import { Layout } from "antd";
 import { Suspense, useMemo, type CSSProperties } from "react";
 import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from "./config";
 import { down, useMediaQuery } from "@/hooks";
+import Header from "./header";
+import Nav from "./nav";
 
 function DashboardLayout() {
   const { themeLayout } = useSettings();
@@ -36,7 +38,7 @@ function DashboardLayout() {
         <Layout style={innerLayoutStyle}>
           <Header />
           <Nav />
-          <Footer />
+          <Main />
         </Layout>
       </Suspense>
     </Layout>

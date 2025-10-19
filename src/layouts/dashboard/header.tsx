@@ -1,11 +1,12 @@
-import { useState, type CSSProperties } from 'react';
+import {Drawer} from 'antd';
+import {useState, type CSSProperties} from 'react';
 
 import {ThemeLayout} from '#/enum';
 import {useSettings} from '@/store/settingStore';
 import {themeVars} from '@/theme/theme.css';
 import {cn} from '@/utils';
 import {rgbAlpha} from '@/utils/theme';
-import { HEADER_HEIGHT, NAV_COLLAPSED_WIDTH, NAV_WIDTH } from './config';
+import {HEADER_HEIGHT, NAV_COLLAPSED_WIDTH, NAV_WIDTH} from './config';
 
 import {IconButton, SvgIcon} from '@/components/icon';
 import Logo from '@/components/logo';
@@ -16,9 +17,7 @@ import LocalePicker from '@/components/locale-picker';
 import NoticeButton from '../_common/notice';
 import SettingButton from '../_common/setting-button';
 import AccountDropdown from '../_common/account-dropdown';
-import { Drawer, theme } from 'antd';
-
-
+import NavVertical from './nav/nav-vertical';
 
 function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -70,7 +69,7 @@ function Header() {
             </div>
           </div>
 
-          <div className="flex">
+          <div className='flex'>
             <SearchBar />
             <LocalePicker />
             <NoticeButton />
@@ -83,9 +82,11 @@ function Header() {
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
         closeIcon={false}
-        width={themeLayout === ThemeLayout.Mini ? NAV_COLLAPSED_WIDTH : NAV_WIDTH}
+        width={
+          themeLayout === ThemeLayout.Mini ? NAV_COLLAPSED_WIDTH : NAV_WIDTH
+        }
       >
-        <NavVertical closeSidebarDrawer={() => setDrawerOpen(false)} />
+        <NavVertical closeSideBarDrawer={() => setDrawerOpen(false)} />
       </Drawer>
     </>
   );
