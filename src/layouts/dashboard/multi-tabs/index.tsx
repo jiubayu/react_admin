@@ -1,11 +1,26 @@
 import {Tabs} from 'antd';
 import {useRef} from 'react';
 import styled from 'styled-components';
+import {useMultiTabsContext} from './providers/multi-tabs-provider';
+import {useMultiTabsStyle} from './hooks/use-tab-style';
+import SortableContainer from './components/sortable-container';
+import {useRouter} from '@/router/hooks';
+import type {KeepAliveTab} from './types';
+import {replaceDynamicParams} from '@/router/hooks/use-current-route-meta';
+import { SortableItem } from './components/sortable-item';
 
 function MultiTabs() {
   const scrollContainer = useRef<HTMLUListElement>(null);
 
-  const {activeTabRoutePath} = useMultiTabsContext();
+  const {tabs, activeTabRoutePath, setTabs} = useMultiTabsContext();
+  const style = useMultiTabsStyle();
+  const {push} = useRouter();
+
+  const handleTabClick = ({key, params = {}}: KeepAliveTab) => {
+    console.log('🚀 ~ handleTabClick ~ key:', key, params);
+    const tabKey = replaceDynamicParams(key, params);
+    push(tabKey);
+  };
 
   return (
     <StyledMultiTabs>
@@ -30,12 +45,12 @@ function MultiTabs() {
                   ref={scrollContainer}
                   className='flex overflow-x-auto w-full px-2 h-[32px] hide-scrollbar'
                 >
-                  {Tabs.map((tab) => (
+                  {tabs.map((tab) => (
                     <SortableItem
                       tab={tab}
                       key={tab.key}
                       onClick={() => handleTabClick(tab)}
-                    ></SortableItem>
+                    />
                   ))}
                 </ul>
               </SortableContainer>

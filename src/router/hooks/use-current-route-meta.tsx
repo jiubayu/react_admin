@@ -49,7 +49,7 @@ export function useCurrentRouteMeta() {
 }
 
 // 动态路由匹配
-function replaceDynamicParams(menuKey: string, params: Params<string>) {
+export function replaceDynamicParams(menuKey: string, params: Params<string>) {
   // return key.replace(/:\w+/g, (match) => params[match.slice(1)] || '');
   let replacedPathname = menuKey;
   // 解析理由路径中的参数名称
