@@ -7,7 +7,8 @@ import SortableContainer from './components/sortable-container';
 import {useRouter} from '@/router/hooks';
 import type {KeepAliveTab} from './types';
 import {replaceDynamicParams} from '@/router/hooks/use-current-route-meta';
-import { SortableItem } from './components/sortable-item';
+import {SortableItem} from './components/sortable-item';
+import {TabItem} from './components/tab-item';
 
 function MultiTabs() {
   const scrollContainer = useRef<HTMLUListElement>(null);
@@ -20,6 +21,21 @@ function MultiTabs() {
     console.log('🚀 ~ handleTabClick ~ key:', key, params);
     const tabKey = replaceDynamicParams(key, params);
     push(tabKey);
+  };
+
+  const handleDragEnd = (oldIndex: number, newIndex: number) => {
+    if (oldIndex === newIndex) return;
+    const newTabs = Array.from(tabs);
+    const [removed] = newTabs.splice(oldIndex, 1);
+    newTabs.splice(newIndex, 0, removed);
+    setTabs([...newTabs]);
+  };
+
+  const renderOverlay = (id: string | number) => {
+    const tab = tabs.find((tab) => tab.key === id);
+
+    if (!tab) return null;
+    return <TabItem tab={tab} />;
   };
 
   return (

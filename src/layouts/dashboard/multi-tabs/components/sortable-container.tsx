@@ -19,14 +19,14 @@ import {useState} from 'react';
 
 interface SortableContainerProps {
   items: any[];
-  onSortEdit?: (oldIndex: number, newIndex: number) => void;
+  onSortEnd?: (oldIndex: number, newIndex: number) => void;
   renderOverlay?: (activeId: string | number) => React.ReactNode;
   children: React.ReactNode;
 }
 
 const SortableContainer: React.FC<SortableContainerProps> = ({
   items,
-  onSortEdit,
+  onSortEnd,
   renderOverlay,
   children,
 }) => {
@@ -56,7 +56,7 @@ const SortableContainer: React.FC<SortableContainerProps> = ({
       const newIndex = items.findIndex((item) => item.key === over.id); // 目标对象
 
       if (oldIndex !== -1 && newIndex !== -1) {
-        onSortEdit?.(oldIndex, newIndex);
+        onSortEnd?.(oldIndex, newIndex);
       }
     }
   };

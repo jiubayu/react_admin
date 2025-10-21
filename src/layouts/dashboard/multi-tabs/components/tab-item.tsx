@@ -4,6 +4,7 @@ import {Dropdown, type MenuProps} from 'antd';
 import {useMultiTabsContext} from '../providers/multi-tabs-provider';
 import {useTranslation} from 'react-i18next';
 import type {TabItemProps} from '../types';
+import {useTabLabelRender} from '../hooks/use-tab-label-render';
 
 export function TabItem({tab, style, onClose}: TabItemProps) {
   const {t} = useTranslation();
@@ -16,6 +17,8 @@ export function TabItem({tab, style, onClose}: TabItemProps) {
     closeRight,
     closeAll,
   } = useMultiTabsContext();
+
+  const renderTabLabel = useTabLabelRender();
 
   const menuItems: MenuProps['items'] = [
     {

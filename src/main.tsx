@@ -1,9 +1,20 @@
-import { createRoot } from 'react-dom/client'
-// import './index.css'
-import App from './App.tsx'
-import './global.css'
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {Suspense} from 'react';
+import ReactDOM from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
 
+import ProgressBar from './components/progress-bar';
 
-createRoot(document.getElementById('root')!).render(
-    <App />
-)
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+
+root.render(
+  <HelmetProvider>
+    <QueryClientProvider client={new QueryClient()}>
+      <Suspense>
+        <ProgressBar/>
+      </Suspense>
+    </QueryClientProvider>
+  </HelmetProvider>
+);

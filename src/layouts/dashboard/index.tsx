@@ -8,6 +8,7 @@ import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from "./config";
 import { down, useMediaQuery } from "@/hooks";
 import Header from "./header";
 import Nav from "./nav";
+import Main from "./main";
 
 function DashboardLayout() {
   const { themeLayout } = useSettings();

@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* editor */
+@import 'react-quill/dist/quill.snow.css';
+/* simplebar */
+@import 'simplebar-react/dist/simplebar.min.css';
+
+/* font */
+@import "@fontsource-variable/open-sans";
+@import "@fontsource-variable/inter";
