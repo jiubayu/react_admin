@@ -54,7 +54,9 @@
     "@fontsource-variable/open-sans": "^5.1.0",
     "nprogress": "^0.2.0",
     "@vercel/analytics": "^1.2.2",
-    "@ant-design/cssinjs": "^1.17.2"
+    "@ant-design/cssinjs": "^1.17.2",
+    "i18next": "^23.5.1",
+    "i18next-browser-languagedetector": "^7.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
@@ -82,7 +84,11 @@
     "vite": "^6.3.5",
     "@types/autosuggest-highlight": "^3.2.0",
     "vite-plugin-svg-icons": "^2.0.1",
-    "rollup-plugin-visualizer": "^5.9.2"
+    "rollup-plugin-visualizer": "^5.9.2",
+    "msw": "^2.4.9"
+  },
+  "engines": {
+    "node": "20.*"
   },
   "msw": {
     "workerDirectory": "public"

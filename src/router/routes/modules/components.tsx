@@ -1,7 +1,7 @@
 import type {AppRouteObject} from '#/router';
 import {Iconify} from '@/components/icon';
 import {CircleLoading} from '@/components/loading';
-import ToastPage from '@/components/toast';
+import ToastPage from '@/pages/components/toast';
 import ScrollPage from '@/pages/components/scroll';
 import {lazy, Suspense} from 'react';
 import {

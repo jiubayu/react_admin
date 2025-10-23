@@ -40,6 +40,7 @@ root.render(
         {/* Vercel Analytics 是 Vercel 提供的分析统计功能，如果你使用 Vercel
         部署你的网站，那么可以很方便地使用 Vercel 自带的分析统计功能 */}
         <Analytics />
+        <App />
       </Suspense>
     </QueryClientProvider>
   </HelmetProvider>

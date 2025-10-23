@@ -1,4 +1,4 @@
 export const ENTITY_PATH = '/src/pages';
-export const PAGES = import.meta.glob(`${ENTITY_PATH}/**/*.tsx`, {
+export const PAGES = import.meta.glob(`/src/pages/**/*.tsx`, {
   eager: true,
 });

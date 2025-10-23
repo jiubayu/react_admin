@@ -47,10 +47,15 @@ export default defineConfig(({mode}) => {
           brotliSize: true,
           template: 'treemap', // 使用树形图更直观
         }),
+
+      // svgIconsPlugin({
+      //   iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
+      //   svgoOptions: {}, // 可选的 SVGO 配置
+      // }),
     ].filter(Boolean),
 
     server: {
-      open: true,
+      // open: true,
       host: true,
       port: 3002,
       proxy: {

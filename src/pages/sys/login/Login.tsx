@@ -16,9 +16,8 @@ import MobileForm from './MobileForm';
 import QrCodeForm from './QrcodeForm';
 import RegisterForm from './RegisterForm';
 import ResetForm from './ResetForm';
-
 // /dashboard/workbench
-const {VITE_APP_HOMEPAGE: HOMEPAGE} = import.meta.env;
+import {HOMEPAGE} from '@/consts/global';
 
 const gradientBg = rgbAlpha(themeVars.colors.background.defaultChannel, 0.9);
 const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat, url(${Overlay})`;
