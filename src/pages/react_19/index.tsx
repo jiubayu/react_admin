@@ -15,9 +15,9 @@ const lists = [
   ),
 ];
 
-const getData = fetch(`/api/toutiao?key=36de5db81215`).then((response) =>
-  response.json()
-);
+// const getData = fetch(`/api/toutiao?key=36de5db81215`).then((response) =>
+//   response.json()
+// );
 
 function React19() {
   const [name, setName] = useState('');
@@ -114,42 +114,42 @@ function MyInput({placeholder, ref, handleFocus}: any) {
   return <input placeholder={placeholder} ref={ref} onFocus={handleFocus} />;
 }
 
-const Search = function () {
-  const [query, setQuery] = useState('');
-  return (
-    <div>
-      <label>
-        search albums:
-        <input
-          type='text'
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-      </label>
-      <Suspense fallback={<div>Loading...</div>}>
-        <SearchResults query={query} />
-      </Suspense>
-    </div>
-  );
-};
+// const Search = function () {
+//   const [query, setQuery] = useState('');
+//   return (
+//     <div>
+//       <label>
+//         search albums:
+//         <input
+//           type='text'
+//           value={query}
+//           onChange={(e) => setQuery(e.target.value)}
+//         />
+//       </label>
+//       <Suspense fallback={<div>Loading...</div>}>
+//         <SearchResults query={query} />
+//       </Suspense>
+//     </div>
+//   );
+// };
 
-const SearchResults = ({query}: any) => {
-  console.log(query, 'query---');
-  if (query === '') {
-    return null;
-  }
-  const albums = use(getData);
-  // console.log('🚀 ~ SearchResults ~ albums:', albums.items);
+// const SearchResults = ({query}: any) => {
+//   console.log(query, 'query---');
+//   if (query === '') {
+//     return null;
+//   }
+//   const albums = use(getData);
+//   // console.log('🚀 ~ SearchResults ~ albums:', albums.items);
 
-  if (albums.items.length === 0) {
-    return <div>No results</div>;
-  }
-  return (
-    <ul>
-      {albums.items.map((item: any) => (
-        <li key={item.id}>{item.title}</li>
-      ))}
-    </ul>
-  );
-};
+//   if (albums.items.length === 0) {
+//     return <div>No results</div>;
+//   }
+//   return (
+//     <ul>
+//       {albums.items.map((item: any) => (
+//         <li key={item.id}>{item.title}</li>
+//       ))}
+//     </ul>
+//   );
+// };
 export default React19;
