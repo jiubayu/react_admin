@@ -10,7 +10,6 @@ import {StorageEnum} from '#/enum';
 import userService, {type SignInReq} from '@/api/services/userService';
 
 const {VITE_APP_HOMEPAGE: HOMEPAGE} = import.meta.env;
-console.log('🚀 ~ HOMEPAGE:', HOMEPAGE);
 
 type UserStore = {
   userInfo: Partial<UserInfo>;
@@ -69,6 +68,7 @@ export const useSignIn = () => {
   const signIn = async (data: SignInReq) => {
     try {
       const res = await signInMutation.mutateAsync(data);
+      // console.log('🚀 ~ signIn ~ res:', res);
       const {user, accessToken, refreshToken} = res;
       setUserInfo(user);
       setUserToken({accessToken, refreshToken});

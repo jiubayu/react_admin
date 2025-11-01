@@ -11,7 +11,7 @@ import {LocalEnum, StorageEnum} from '#/enum';
 
 const defaultLng =
   getStringItem(StorageEnum.I18N) || (LocalEnum.en_US as string);
-console.log('🚀 ~ defaultLng:', defaultLng);
+// console.log('🚀 ~ defaultLng:', defaultLng);
 i18n
   // detect user language
   // learn more: https://github.com/i18next/i18next-browser-languageDetector
