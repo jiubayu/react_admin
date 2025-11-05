@@ -27,6 +27,7 @@ const NO_MATCHED_ROUTE: AppRouteObject = {
 
 export default function Router() {
   const permissionRoutes = usePermissionRoutes();
+  console.log('🚀 ~ Router ~ permissionRoutes:', permissionRoutes);
 
   const PROTECTED_ROUTE: AppRouteObject = {
     path: '/',

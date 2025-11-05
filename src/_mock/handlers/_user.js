@@ -7,6 +7,7 @@ import { USER_LIST } from "../assets";
 
 const signIn = http.post(`/api${UserApi.SignIn}`, async ({ request }) => {
 	const { username, password } = await request.json();
+	console.log("🚀 ~ username:", username)
 
 	const user = USER_LIST.find((item) => item.username === username);
 
@@ -43,4 +44,6 @@ const userList = http.get("/api/user", async () => {
 	);
 });
 
-export default [signIn, userList];
+const test = () => http.get('/api/test', () => HttpResponse.json({ id: 'abc-123' }));
+
+export default [signIn, userList, test];

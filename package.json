@@ -85,7 +85,7 @@
     "@types/autosuggest-highlight": "^3.2.0",
     "vite-plugin-svg-icons": "^2.0.1",
     "rollup-plugin-visualizer": "^5.9.2",
-    "msw": "^2.4.9"
+    "msw": "2.6.4"
   },
   "engines": {
     "node": "20.*"
