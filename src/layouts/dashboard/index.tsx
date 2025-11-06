@@ -1,5 +1,5 @@
 import {ThemeLayout} from '#/enum';
-import {CircleLoading} from '@/pages/components/loading';
+import {CircleLoading} from '@/components/loading';
 import {useSettings} from '@/store/settingStore';
 import {cn} from '@/utils';
 import {Layout} from 'antd';

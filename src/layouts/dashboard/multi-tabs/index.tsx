@@ -14,6 +14,7 @@ function MultiTabs() {
   const scrollContainer = useRef<HTMLUListElement>(null);
 
   const {tabs, activeTabRoutePath, setTabs} = useMultiTabsContext();
+  console.log('🚀 ~ MultiTabs ~ tabs:', tabs);
   const style = useMultiTabsStyle();
   const {push} = useRouter();
 
@@ -47,9 +48,10 @@ function MultiTabs() {
         activeKey={activeTabRoutePath}
         items={tabs.map((tab) => ({
           ...tab,
-          children: <div key={tab.timeStamp}>{tab.children}</div>,
+          children: <div key={tab.timeStamp}>1111</div>,
         }))}
         renderTabBar={() => {
+          // 展示访问过的路径的跳转
           return (
             <div style={style}>
               <SortableContainer
@@ -73,7 +75,7 @@ function MultiTabs() {
             </div>
           );
         }}
-      ></Tabs>
+      />
     </StyledMultiTabs>
   );
 }

@@ -5,11 +5,12 @@ import {flattenTrees} from '@/utils/tree';
 import type {Permission} from '#/entity';
 import type {AppRouteObject} from '#/router';
 import {BasicStatus, PermissionType} from '#/enum';
-import {Outlet} from 'react-router';
+import {Navigate, Outlet} from 'react-router';
 import {CircleLoading} from '@/components/loading';
 import {ENTITY_PATH, PAGES} from '@/consts/route';
 import {Tag} from 'antd';
 import {Iconify} from '@/components/icon';
+import {isEmpty} from 'ramda';
 
 // 动态导入组件
 
@@ -76,7 +77,7 @@ function createMenuRoute(
 
 function createCatalogueRoute(
   permission: Permission,
-  flattenedPermissions: Permission[] = []
+  flattenedPermissions: Permission[]
 ): AppRouteObject {
   const baseRoute = createBaseRoute(
     permission,
@@ -95,11 +96,19 @@ function createCatalogueRoute(
       </Suspense>
     );
   }
+
   //递归处理children 子路由
   baseRoute.children = transformPermissionsToRoutes(
     children,
     flattenedPermissions
   );
+
+  if (!isEmpty(children)) {
+    baseRoute.children.unshift({
+      index: true,
+      element: <Navigate to={children[0].route} replace />,
+    });
+  }
 
   return baseRoute;
 }

@@ -13,13 +13,12 @@ export function useCurrentRouteMeta() {
   // 获取路由组件实例
   // useOutlet 返回路由层次结构中此级别的子路由元素 由 <Outlet> 内部使用以渲染子路由。
   const children = useOutlet();
+  console.log('🚀 ~ useCurrentRouteMeta ~ children:', children);
 
   // 获取拍平后的路由列表
   const flattenedRoutes = useFlattenedRoutes();
 
-  const [currentRouteMeta, setCurrentRouteMeta] = useState<RouteMeta | null>(
-    null
-  );
+  const [currentRouteMeta, setCurrentRouteMeta] = useState<RouteMeta>();
 
   useEffect(() => {
     // 获取当前匹配的路由
@@ -52,12 +51,14 @@ export function useCurrentRouteMeta() {
 export function replaceDynamicParams(menuKey: string, params: Params<string>) {
   // return key.replace(/:\w+/g, (match) => params[match.slice(1)] || '');
   let replacedPathname = menuKey;
-  // 解析理由路径中的参数名称
+  // 解析路由路径中的参数名称
   const paramsNames = menuKey.match(/:\w+/g);
 
   if (paramsNames) {
     for (const paramName of paramsNames) {
+      // 去掉冒号，获取参数名称
       const paramValue = params[paramName.slice(1)];
+      if (!paramValue) continue;
       replacedPathname = replacedPathname.replace(paramName, paramValue || '');
     }
   }

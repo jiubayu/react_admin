@@ -68,8 +68,9 @@ export const useSignIn = () => {
   const signIn = async (data: SignInReq) => {
     try {
       const res = await signInMutation.mutateAsync(data);
-      console.log('🚀 ~ signIn ~ res:', res);
+      // console.log('🚀 ~ signIn ~ res:', res);
       const {user, accessToken, refreshToken} = res;
+      console.log('🚀 ~ signIn ~ user:', user);
       setUserInfo(user);
       setUserToken({accessToken, refreshToken});
       navigate(HOMEPAGE, {replace: true});

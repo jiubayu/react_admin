@@ -17,9 +17,11 @@ const multiTabsContext = createContext<MultiTabsContextType>({
   refreshTab: () => {},
 });
 
+
 export function MultiTabsProvider({children}: {children: React.ReactNode}) {
   const [tabs, setTabs] = useState<KeepAliveTab[]>([]);
   const currentRouteMeta = useCurrentRouteMeta();
+  console.log('🚀 ~ MultiTabsProvider ~ currentRouteMeta:', currentRouteMeta);
 
   const activeTabRoutePath = useMemo(() => {
     if (!currentRouteMeta) return '';
@@ -35,14 +37,16 @@ export function MultiTabsProvider({children}: {children: React.ReactNode}) {
 
     setTabs((prev) => {
       const filtered = prev.filter((tab) => !tab.hideTab);
+      console.log('🚀 ~ MultiTabsProvider ~ prev:', prev);
+      // console.log('🚀 ~ MultiTabsProvider ~ filtered:', filtered);
 
       let {key} = currentRouteMeta;
-      const {outlet: children, params = {}} = currentRouteMeta;
+      const {outlet: children, params = {} } = currentRouteMeta;
 
       if (!isEmpty(params)) key = replaceDynamicParams(key, params);
 
-      const isExists = filtered.find((tab) => tab.key === key);
-      if (isExists) {
+      const isExisted = filtered.find((tab) => tab.key === key);
+      if (!isExisted) {
         return [
           ...filtered,
           {
