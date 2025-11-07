@@ -7,14 +7,15 @@ import type {AppRouteObject} from '#/router';
 import {BasicStatus, PermissionType} from '#/enum';
 import {Navigate, Outlet} from 'react-router';
 import {CircleLoading} from '@/components/loading';
-import {ENTITY_PATH, PAGES} from '@/consts/route';
 import {Tag} from 'antd';
 import {Iconify} from '@/components/icon';
 import {isEmpty} from 'ramda';
 
 // 动态导入组件
-
-const loadComponentFromPath = (path: string) => PAGES[ENTITY_PATH + path];
+// const loadComponentFromPath = (path: string) => PAGES[ENTITY_PATH + path];
+const ENTRY_PATH = '/src/pages';
+const PAGES = import.meta.glob('/src/pages/**/*.tsx');
+const loadComponentFromPath = (path: string) => PAGES[`${ENTRY_PATH}${path}`];
 
 // # 权限路由模式 permission | module
 // VITE_APP_ROUTER_MODE=permission
@@ -89,6 +90,7 @@ function createCatalogueRoute(
   }
 
   const {parentId, children = []} = permission;
+  // console.log('🚀 ~ createCatalogueRoute ~ permission:', permission);
   if (!parentId) {
     baseRoute.element = (
       <Suspense fallback={<CircleLoading />}>

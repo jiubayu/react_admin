@@ -11,6 +11,7 @@ const dataSource = [
     android: '9.91k',
     windows: '1.95k',
     ios: '1.95k',
+    percent: 0.18,
   },
   {
     country: 'China',
@@ -18,6 +19,7 @@ const dataSource = [
     android: '1.95k',
     windows: '9.25k',
     ios: '7.95k',
+    percent: 0.23,
   },
   {
     country: 'Australia',
@@ -25,6 +27,7 @@ const dataSource = [
     android: '3.91k',
     windows: '2.95k',
     ios: '4.95k',
+    percent: 0.1,
   },
   {
     country: 'France',
@@ -32,6 +35,7 @@ const dataSource = [
     android: '3.28k',
     windows: '2.29k',
     ios: '8.95k',
+    percent: 0.18,
   },
   {
     country: 'USA',
@@ -39,6 +43,7 @@ const dataSource = [
     android: '8.81k',
     windows: '7.05k',
     ios: '4.35k',
+    percent: 0.26,
   },
 ];
 
@@ -62,8 +67,22 @@ export default function TopInstalled() {
       </header>
       <main className='w-full'>
         {dataSource.map((item) => (
-          <div className='mb-4 flex items-center' key={item.country}>
+          <div
+            className='mb-4 flex items-center'
+            style={{backgroundColor: 'transparent', position: 'relative'}}
+            key={item.country}
+          >
             <Iconify icon={item.iconify} size={30} />
+            <div
+              style={{
+                background: `linear-gradient(0.45turn, #3f87a650, #ebf8e140)`,
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: `${item.percent * 100}%`,
+                height: '100%',
+              }}
+            ></div>
             <span className='mx-2 font-medium'>{item.country}</span>
             <div className='ml-auto flex'>
               <div className='flex items-center justify-center'>

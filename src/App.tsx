@@ -18,7 +18,7 @@ function App() {
         <Toast />
 
         <Router />
-      </MotionLazy>
+      </MotionLazy> 
     </ThemeProvider>
   );
 }

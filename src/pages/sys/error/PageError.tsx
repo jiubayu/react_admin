@@ -253,7 +253,7 @@ export default function PageError({error, resetErrorBoundary}: FallbackProps) {
             onClick={goHome}
             type='button'
           >
-            Go to Home
+            Go to Home11
           </button>
         </MotionContainer>
       </div>

@@ -7,7 +7,7 @@ import {chartWrapper} from './styles.css';
 function Chart(props: ApexChartProps) {
   return (
     <div className={chartWrapper}>
-      <ApexChart options={props.options} series={props.series} type='area' />
+      <ApexChart {...props} />
     </div>
   );
 }

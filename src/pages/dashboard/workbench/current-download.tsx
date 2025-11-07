@@ -18,7 +18,7 @@ export default function CurrentDownload() {
 const series = [44, 55, 13, 43];
 function ChartDonut() {
   const chartOptions = useChart({
-    labels: ['Mac', 'Windows', 'IOS', 'Android'],
+    labels: ['Mac', 'Window', 'IOS', 'Android'],
     stroke: {
       show: false,
     },
@@ -50,5 +50,7 @@ function ChartDonut() {
     },
   });
 
-  return <Chart type='donut' options={chartOptions} series={series} />;
+  return (
+    <Chart type='donut' options={chartOptions} series={series} height={360} />
+  );
 }

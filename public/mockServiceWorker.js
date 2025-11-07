@@ -1,3 +1,6 @@
+
+/* eslint-disable prefer-arrow-callback */
+
 /**
  * Service Worker 本质上是一个位于浏览器和网络之间的客户端脚本，它充当一个可编程的网络代理。它的主要特点是：
 
@@ -11,6 +14,7 @@
 
   需要 HTTPS：为了安全（防止中间人攻击），在生产环境中必须使用 HTTPS（localhost 除外，用于开发）。
 */
+
 
 const PACKAGE_VERSION = '2.6.4';
 const INTEGRITY_CHECKSUM = 'ca7800994cc8bfb5eb961e037c877074';

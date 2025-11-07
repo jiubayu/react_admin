@@ -39,30 +39,29 @@ type Props = {
 
 function Basic({percent, title, subtitle, iconify, bg, strokeColor}: Props) {
   const format = (val?: number) => (
-    <span style={{color: themeVars.colors.palette.primary.default}}>
-      {val}%
-    </span>
+    <span style={{color: themeVars.colors.background.default}}>{val}%</span>
   );
   return (
     <div
       className='relative flex items-center rounded-2xl p-6'
       style={{
         backgroundColor: bg,
-        color: themeVars.colors.palette.primary.default,
+        color: themeVars.colors.background.default,
       }}
     >
       <Progress
         type='circle'
+        size={70}
         percent={percent}
         format={format}
         strokeColor={strokeColor}
       />
-      <div className='flex flex-col m-2'>
+      <div className='flex flex-col ml-2'>
         <span className='text-2xl font-bold'>{title}</span>
         <span className='opacity-50'>{subtitle}</span>
       </div>
       <div className='absolute right-0'>
-        <Iconify icon={iconify} style={{opacity: 0.8}} size={100} />
+        <Iconify icon={iconify} style={{opacity: 0.08}} size={100} />
       </div>
     </div>
   );

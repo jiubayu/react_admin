@@ -7,7 +7,7 @@ import { USER_LIST } from "../assets";
 
 const signIn = http.post(`/api${UserApi.SignIn}`, async ({ request }) => {
 	const { username, password } = await request.json();
-	console.log("🚀 ~ username:", username)
+	// console.log("🚀 ~ username:", username)
 
 	const user = USER_LIST.find((item) => item.username === username);
 

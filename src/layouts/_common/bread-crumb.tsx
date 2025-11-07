@@ -1,11 +1,11 @@
-import { Iconify } from "@/components/icon";
-import { useFlattenedRoutes } from "@/router/hooks/use-flattened-routes";
-import { usePermissionRoutes } from "@/router/hooks/use-permission-routes";
-import { menuFilter } from "@/router/utils";
-import { Breadcrumb, type BreadcrumbProps, type GetProp } from "antd";
-import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
-import { Link, useMatches } from "react-router";
+import {Iconify} from '@/components/icon';
+import {useFlattenedRoutes} from '@/router/hooks/use-flattened-routes';
+import {usePermissionRoutes} from '@/router/hooks/use-permission-routes';
+import {menuFilter} from '@/router/utils';
+import {Breadcrumb, type BreadcrumbProps, type GetProp} from 'antd';
+import {useMemo} from 'react';
+import {useTranslation} from 'react-i18next';
+import {Link, useMatches} from 'react-router';
 
 type MenuItem = GetProp<BreadcrumbProps, 'items'>[number];
 
@@ -15,7 +15,7 @@ type MenuItem = GetProp<BreadcrumbProps, 'items'>[number];
 function BreadCrumb() {
   const {t} = useTranslation();
   const matches = useMatches();
-  console.log('🚀 ~ BreadCrumb ~ matches:', matches);
+  // console.log('🚀 ~ BreadCrumb ~ matches:', matches);
   const flattenedRoutes = useFlattenedRoutes();
   const permissionRoutes = usePermissionRoutes();
 

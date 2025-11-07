@@ -33,7 +33,7 @@ const functions: AppRouteObject = {
     {
       path: 'clipboard',
       element: <ClipboardPage />,
-      meta: {label: 'sys.menu.functions.form', key: '/functions/form'},
+      meta: {label: 'sys.menu.clipboard', key: '/functions/clipboard'},
     },
   ],
 };

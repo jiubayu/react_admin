@@ -31,7 +31,7 @@ export const LANGUAGE_MAP: Record<Locale, Language> = {
 // 提供当前语言类型和修改语言的能力
 export default function useLocale() {
   const {i18n} = useTranslation();
-  console.log('🚀 ~ useLocale ~ i18n:', i18n);
+  // console.log('🚀 ~ useLocale ~ i18n:', i18n);
 
   /**
    * localstorage -> i18nextLng change

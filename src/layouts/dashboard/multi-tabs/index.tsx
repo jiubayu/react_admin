@@ -14,12 +14,11 @@ function MultiTabs() {
   const scrollContainer = useRef<HTMLUListElement>(null);
 
   const {tabs, activeTabRoutePath, setTabs} = useMultiTabsContext();
-  console.log('🚀 ~ MultiTabs ~ tabs:', tabs);
   const style = useMultiTabsStyle();
   const {push} = useRouter();
 
   const handleTabClick = ({key, params = {}}: KeepAliveTab) => {
-    console.log('🚀 ~ handleTabClick ~ key:', key, params);
+    // console.log('🚀 ~ handleTabClick ~ key:', key, params);
     const tabKey = replaceDynamicParams(key, params);
     push(tabKey);
   };
@@ -48,7 +47,7 @@ function MultiTabs() {
         activeKey={activeTabRoutePath}
         items={tabs.map((tab) => ({
           ...tab,
-          children: <div key={tab.timeStamp}>1111</div>,
+          children: <div key={tab.timeStamp}>{tab.children || ''}</div>,
         }))}
         renderTabBar={() => {
           // 展示访问过的路径的跳转

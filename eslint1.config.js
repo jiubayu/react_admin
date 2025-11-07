@@ -26,6 +26,8 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'off',
       // '@typescript-eslint/no-non-null-assertion': 'off',
       'react-hooks/rules-of-hooks': 'warn',
+      "prefer-arrow-callback": "off",
+      "react/prefer-arrow-function": "off"
     },
   },
 )

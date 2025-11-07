@@ -4,7 +4,7 @@ import PageError from '@/pages/sys/error/PageError';
 import Login from '@/pages/sys/login/Login';
 import {createHashRouter, Navigate, type RouteObject} from 'react-router';
 import {ERROR_ROUTE} from './routes/error-routes';
-import {RouterProvider} from 'react-router-dom';
+import {RouterProvider} from 'react-router/dom';
 import ProtectedRoute from './components/protected-route';
 import {usePermissionRoutes} from './hooks/use-permission-routes';
 import DashboardLayout from '@/layouts/dashboard';
@@ -27,7 +27,7 @@ const NO_MATCHED_ROUTE: AppRouteObject = {
 
 export default function Router() {
   const permissionRoutes = usePermissionRoutes();
-  console.log('🚀 ~ Router ~ permissionRoutes:', permissionRoutes);
+  // console.log('🚀 ~ Router ~ permissionRoutes:', permissionRoutes);
 
   const PROTECTED_ROUTE: AppRouteObject = {
     path: '/',
@@ -35,6 +35,7 @@ export default function Router() {
       <ProtectedRoute>
         <DashboardLayout />
       </ProtectedRoute>
+      // <DashboardLayout />
     ),
     // index: true
     // 1 无路径参数：index 路由不能有 path 属性
@@ -55,7 +56,7 @@ export default function Router() {
   ] as RouteObject[];
   // todo browserROute test
   const router = createHashRouter(routes);
-  console.log('🚀 ~ Router ~ routes:', routes);
+  // console.log('🚀 ~ Router ~ routes:', routes);
 
   return <RouterProvider router={router} />;
 }

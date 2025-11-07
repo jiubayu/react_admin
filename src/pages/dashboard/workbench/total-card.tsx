@@ -1,7 +1,7 @@
 import Chart from '@/components/chart';
 import useChart from '@/components/chart/useChart';
 import {SvgIcon} from '@/components/icon';
-import {Card} from 'antd';
+import Card from '@/components/card';
 
 type Props = {
   title: string;
@@ -82,5 +82,7 @@ function ChartLine({data}: {data: number[]}) {
       show: false, // 隐藏网格
     },
   });
-  return <Chart type='line' series={series} options={chartOptions} />;
+  return (
+    <Chart type='line' series={series} options={chartOptions} width={120} />
+  );
 }

@@ -47,12 +47,18 @@ const management: AppRouteObject = {
         {
           path: 'profile',
           element: <ProfilePage />,
-          meta: {label: 'sys.menu.profile', key: '/management/user/profile'},
+          meta: {
+            label: 'sys.menu.user.profile',
+            key: '/management/user/profile',
+          },
         },
         {
           path: 'account',
           element: <AccountPage />,
-          meta: {label: 'sys.menu.account', key: '/management/user/account'},
+          meta: {
+            label: 'sys.menu.user.account',
+            key: '/management/user/account',
+          },
         },
       ],
     },

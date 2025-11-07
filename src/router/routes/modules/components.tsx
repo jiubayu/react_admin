@@ -31,7 +31,7 @@ const components: AppRouteObject = {
   ),
   // 路由中间件在导航前后按顺序运行。这为您提供了一个统一的地方来执行诸如日志记录和身份验证之类的操作。
   // next 函数会继续向下执行链，在叶子路由上，next 函数会执行导航的加载器/操作。
-  unstable_middleware: [loggingMiddleware],
+  // unstable_middleware: [loggingMiddleware],
   // 路由加载器在路由组件渲染之前为其提供数据
   loader: loader,
   // 路由操作允许进行服务器端数据修改，并在从 <Form>、useFetcher 和 useSubmit 调用时自动重新验证页面上的所有加载器数据。
@@ -107,14 +107,14 @@ const components: AppRouteObject = {
 
 export default components;
 
-async function loggingMiddleware({request}: any, next: any) {
-  const url = new URL(request.url);
-  console.log(`Navigating to ${url.pathname}`);
-  const start = performance.now();
-  await next();
-  const end = performance.now();
-  console.log(`Navigation to ${url.pathname} took ${end - start} ms`);
-}
+// async function loggingMiddleware({request}: any, next: any) {
+//   const url = new URL(request.url);
+//   console.log(`Navigating to ${url.pathname}`);
+//   const start = performance.now();
+//   await next();
+//   const end = performance.now();
+//   console.log(`Navigation to ${url.pathname} took ${end - start} ms`);
+// }
 
 function loader({params}: any) {
   return {message: params || 'hello'};
