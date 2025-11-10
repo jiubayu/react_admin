@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #parent {
+        width: 100px;
+        height: 100px;
+        background-color: darkblue;
+        position: relative;
+        color: #ccc;
+      }
+
+      #parent::before {
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        content: '';
+        opacity: 0.24;
+        height: 100%;
+        border-radius: 6px;
+        position: absolute;
+        /* currentcolor 是一个 CSS 关键字，表示当前元素的 color 属性值
+        码将背景色设置为与文字颜色相同的颜色 */
+        background-color: currentcolor;
+        transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="parent">111</div>
+  </body>
+</html>
