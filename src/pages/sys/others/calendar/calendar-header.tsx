@@ -1,7 +1,8 @@
 import React, {useMemo, type ReactNode} from 'react';
-import {Dropdown, type MenuProps} from 'antd';
-import {Iconify} from '@/components/icon';
+import {Button, Dropdown, type MenuProps} from 'antd';
+import {IconButton, Iconify} from '@/components/icon';
 import {up, useMediaQuery} from '@/hooks';
+import dayjs from 'dayjs';
 
 export type HandleMoveArg = 'next' | 'prev' | 'today';
 export type ViewType =
@@ -70,11 +71,51 @@ function CalendarHeader({
     }
   };
 
+  const viewTypeMenu = (view: ViewType) => {
+    const viewTypeItem = items.find((item) => item.view === view);
+    if (!viewTypeItem) return null;
+
+    const {label, icon} = viewTypeItem;
+    return (
+      <div className='flex items-center'>
+        {icon}
+        <span className='mx-1 !text-sm font-medium'>{label}</span>
+        <Iconify icon='solar:alt-arrow-down-outline' size={20} />
+      </div>
+    );
+  };
+
   return (
     <div className='relative flex items-center justify-between py-5'>
       {lgBreakPoint && (
-        <Dropdown menu={{items, onClick: handleMenuClick}}></Dropdown>
+        <Dropdown menu={{items, onClick: handleMenuClick}}>
+          <Button type='text' size='small'>
+            {viewTypeMenu(view)}
+          </Button>
+        </Dropdown>
       )}
+
+      <div className='flex cursor-pointer items-center justify-center'>
+        <IconButton>
+          <Iconify icon='solar:alt-arrow-left-outline' onClick={() => onMove('prev')} size={20} />
+        </IconButton>
+        <span className='mx-2 text-base font-bold'>{dayjs(now).format('DD MMM YYYY')}</span>
+        <IconButton>
+          <Iconify icon='solar:alt-arrow-right-outline' onClick={() => onMove('next')} size={20} />
+        </IconButton>
+      </div>
+
+      <div className='flex items-center'>
+        <Button type='primary' onClick={() => onMove('today')}>
+          Today
+        </Button>
+        <Button className='ml-2' type='primary' onClick={() => onCreate()}>
+          <div className=' flex items-center justify-center'>
+            <Iconify icon='material-symbols:add' size={24} />
+            New Event
+          </div>
+        </Button>
+      </div>
     </div>
   );
 }
